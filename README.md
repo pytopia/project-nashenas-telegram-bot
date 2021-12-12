@@ -1,6 +1,4 @@
-# Template for Telegram Bot
-
-Template to create a telegram bot in python.
+# Telegram Bot to Connect Strangers
 
 ## How to Run
 1. Set your telegram bot token as environment variable `TELEGRAM_BOT_TOKEN`:
