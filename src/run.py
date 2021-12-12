@@ -1,9 +1,9 @@
 import emoji
-import pymongo
 from loguru import logger
 
 from src.bot import bot
 from src.constants import keyboards, keys, states
+from src.db import db
 from src.filters import IsAdmin
 
 
@@ -11,13 +11,12 @@ class Bot:
     """
     Telegram bot to connect two starangers randomly.
     """
-    def __init__(self, telebot):
+    def __init__(self, telebot, mongodb):
         """
         Initialize bot, database, handlers, and filters.
         """
         self.bot = telebot
-        client = pymongo.MongoClient("localhost", 27017)
-        self.db = client.nashenas_telegram_bot
+        self.db = mongodb
 
         # add custom filters
         self.bot.add_custom_filter(IsAdmin())
@@ -167,5 +166,5 @@ class Bot:
 
 if __name__ == '__main__':
     logger.info('Bot started')
-    nashenas_bot = Bot(telebot=bot)
+    nashenas_bot = Bot(telebot=bot, mongodb=db)
     nashenas_bot.run()
