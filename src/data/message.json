@@ -1,0 +1,18 @@
+{
+    "message_id": 428,
+    "from": {
+        "id": 371998922,
+        "is_bot": false,
+        "first_name": "Ali",
+        "username": "Ali_987096",
+        "language_code": "en"
+    },
+    "chat": {
+        "id": 371998922,
+        "first_name": "Ali",
+        "username": "Ali_987096",
+        "type": "private"
+    },
+    "date": 1639243854,
+    "text": "saf"
+}
