@@ -1,13 +1,13 @@
 from types import SimpleNamespace
 
-from src.utils.keyboard import create_keyboard
-from loguru import logger
+import emoji
 
-logger.info('Reading keyboards and keys...')
+from src.utils.keyboard import create_keyboard
+
 keys = SimpleNamespace(
-    random_connect=':bust_in_silhouette: Random Connect',
-    settings=':gear: Settings',
-    exit=':cross_mark: Exit',
+    random_connect=emoji.emojize(':bust_in_silhouette: Random Connect'),
+    settings=emoji.emojize(':gear: Settings'),
+    exit=emoji.emojize(':cross_mark: Exit'),
 )
 
 keyboards = SimpleNamespace(

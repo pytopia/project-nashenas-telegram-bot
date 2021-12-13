@@ -1,5 +1,6 @@
 import emoji
 from loguru import logger
+from telebot import custom_filters
 
 from src.bot import bot
 from src.constants import keyboards, keys, states
@@ -20,6 +21,8 @@ class Bot:
 
         # add custom filters
         self.bot.add_custom_filter(IsAdmin())
+        self.bot.add_custom_filter(custom_filters.TextMatchFilter())
+        self.bot.add_custom_filter(custom_filters.TextStartsFilter())
 
         # register handlers
         self.handlers()
@@ -47,7 +50,7 @@ class Bot:
             )
             self.update_state(message.chat.id, states.main)
 
-        @self.bot.message_handler(regexp=emoji.emojize(keys.random_connect))
+        @self.bot.message_handler(text=[keys.random_connect])
         def random_connect(message):
             """
             Randomly connect to another user.
@@ -92,7 +95,7 @@ class Bot:
                 {'$set': {'connected_to': message.chat.id}}
             )
 
-        @self.bot.message_handler(regexp=emoji.emojize(keys.exit))
+        @self.bot.message_handler(text=[keys.exit])
         def exit(message):
             """
             Exit from chat or connecting state.
