@@ -108,14 +108,14 @@ class Bot:
             self.update_state(message.chat.id, states.main)
 
             # get connected to user
-            connected_to = self.db.users.find_one(
+            other_user = self.db.users.find_one(
                 {'chat.id': message.chat.id}
             )
-            if not connected_to:
+            if not other_user.get('connected_to'):
                 return
 
             # update connected to user state and terminate the connection
-            other_chat_id = connected_to['connected_to']
+            other_chat_id = other_user['connected_to']
             self.update_state(other_chat_id, states.main)
             self.send_message(
                 other_chat_id,
